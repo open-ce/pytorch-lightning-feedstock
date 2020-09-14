@@ -1,0 +1,45 @@
+{% set name = "pytorch-lightning" %}
+{% set version = "0.9.0" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 9f1010a49b1d1ee4a09653cfa00c438d1117b509e16661e271df587403f8d9e7
+
+build:
+  number: 1 
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip {{ pip }}
+    - python 
+  run:
+    - future {{ future }} 
+    - packaging
+    - numpy {{ numpy }} 
+    - python
+    - pyyaml {{ pyyaml }}
+    - tensorboard {{ tensorboard }} 
+    - pytorch {{ pytorch }} 
+    - tqdm  {{ tqdm }}
+
+test:
+  imports:
+    - pytorch_lightning
+
+about:
+  home: https://pypi.org/project/pytorch-lightning/
+  summary: PyTorch Lightning is the lightweight PyTorch wrapper for ML researchers. Scale your models. Write less boilerplate.
+  description: PyTorch Lightning is the lightweight PyTorch wrapper for ML researchers. Scale your models. Write less boilerplate.
+  license: Apache-2.0
+  license_family: Apache
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - open-ce/open-ce-dev-team
