@@ -26,6 +26,7 @@ requirements:
     - pyyaml {{ pyyaml }}
     - tensorboard {{ tensorboard }} 
     - pytorch-base {{ pytorch }} 
+    - torchvision-base {{ torchvision }}
     - tqdm  {{ tqdm }}
 
 test:
