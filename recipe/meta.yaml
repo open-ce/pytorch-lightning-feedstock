@@ -6,8 +6,8 @@ package:
   version: {{ version }}
 
 source:
-  url: https://github.com/PyTorchLightning/pytorch-lightning/archive/{{ version }}.tar.gz
-  sha256: c623ffdf26096b0e7cf0b6f07e95b6333a193bb215cf5bd7d67f1a698d94f296 
+  git_url: https://github.com/PyTorchLightning/pytorch-lightning
+  git_rev: {{ version }}
 
 build:
   number: 1 
