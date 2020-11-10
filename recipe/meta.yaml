@@ -1,13 +1,13 @@
 {% set name = "pytorch-lightning" %}
-{% set version = "0.9.0" %}
+{% set version = "1.0.5" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 9f1010a49b1d1ee4a09653cfa00c438d1117b509e16661e271df587403f8d9e7
+  url: https://github.com/PyTorchLightning/pytorch-lightning/archive/{{ version }}.tar.gz
+  sha256: c623ffdf26096b0e7cf0b6f07e95b6333a193bb215cf5bd7d67f1a698d94f296 
 
 build:
   number: 1 
@@ -28,6 +28,7 @@ requirements:
     - pytorch-base {{ pytorch }} 
     - torchvision-base {{ torchvision }}
     - tqdm  {{ tqdm }}
+    - fsspec {{ fsspec }}
 
 test:
   imports:
