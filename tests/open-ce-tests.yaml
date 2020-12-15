@@ -1,0 +1,19 @@
+tests:
+  - name: Setup PyTorch-Lightning Tests
+    command: |
+        PL_VERSION=$(python -c "import pytorch_lightning; print(pytorch_lightning.__version__)")
+        PL_COMMIT=${PL_VERSION#*+}
+        conda install -y git
+        git clone https://github.com/PyTorchLightning/pytorch-lightning.git
+        cd pytorch-lightning
+        git checkout ${PL_COMMIT}
+        bash requirements/install_AMP.sh
+        pip install -r requirements/test.txt
+        pip install sklearn omegaconf onnxruntime
+        conda install -y torchtext pytest 
+  - name: Run PyTorch-Lightning tests
+    command: |
+        cd pytorch-lightning
+        pytest -v --ignore='tests/models/test_horovod.py' -k "not test_gpu_stats_monitor_cpu_machine" tests/
+  - name: Clean tests
+    command: rm -rf pytorch-lightning
