@@ -7,7 +7,7 @@ tests:
         git clone https://github.com/PyTorchLightning/pytorch-lightning.git
         cd pytorch-lightning
         git checkout ${PL_COMMIT}
-        conda install -y scikit-learn>=0.22.2 regex typed-ast pandas
+        conda install -y scikit-learn>=0.22.2 regex typed-ast pandas scikit-image
         pip install -r requirements/test.txt
         pip install sklearn omegaconf
   - name: Run PyTorch-Lightning tests
