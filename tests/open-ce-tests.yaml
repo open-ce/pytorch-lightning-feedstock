@@ -7,12 +7,12 @@ tests:
         git clone https://github.com/PyTorchLightning/pytorch-lightning.git
         cd pytorch-lightning
         git checkout ${PL_COMMIT}
-        conda install -y scikit-learn>=0.22.2 regex typed-ast
+        conda install -y scikit-learn>=0.22.2 regex typed-ast pandas scikit-image
         pip install -r requirements/test.txt
         pip install sklearn omegaconf
   - name: Run PyTorch-Lightning tests
     command: |
         cd pytorch-lightning
-        pytest -v --ignore='tests/models/test_horovod.py' --ignore='tests/models/test_onnx.py' -k "not test_gpu_stats_monitor_cpu_machine and not test_cli and not test_batch_size_smaller_than_num_gpus and not test_result_obj_predictions and not test_sync_batchnorm_ddp" tests/
+        pytest -v --ignore='tests/models/test_horovod.py' --ignore='tests/models/test_onnx.py' -k "not test_gpu_stats_monitor_cpu_machine and not test_cli and not test_batch_size_smaller_than_num_gpus and not test_result_obj_predictions and not test_sync_batchnorm_ddp and not test_file_logger_log_hyperparams" tests/
   - name: Clean tests
     command: rm -rf pytorch-lightning
