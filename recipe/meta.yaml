@@ -14,6 +14,9 @@ build:
   noarch: python
   string: py_{{ PKG_BUILDNUM }}
   script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed . -vv
+  ignore_run_exports:
+    - libgcc-ng
+    - libstdcxx-ng
 
 requirements:
   host:
@@ -33,12 +36,10 @@ requirements:
     - torchvision-base {{ torchvision }}
     - tqdm  {{ tqdm }}
     - fsspec {{ fsspec }}
-
-test:
-  requires:
-  #Use pins to control cos6/cos7 match
+    #Use pins to control cos6/cos7 match
     - libgcc-ng  {{ libgcc }}
     - libstdcxx-ng  {{ libstdcxx }}
+test:
   imports:
     - pytorch_lightning
 
