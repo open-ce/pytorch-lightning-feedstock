@@ -1,0 +1,44 @@
+{% set name = "torchmetrics" %}
+{% set version = "0.3.1" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  git_url: https://github.com/PyTorchLightning/metrics
+  git_rev: v{{ version }}
+
+build:
+  noarch: python
+  number: 1 
+  script: {{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python
+  run:
+    - packaging
+    - setuptools {{ setuptools }}
+    - python 
+    - pytorch-base {{ pytorch }}
+ 
+test:
+  imports:
+    - torchmetrics
+
+about:
+  home: https://pypi.org/project/torchmetrics/
+  license: Apache-2.0
+  license_family: Apache
+  license_file: LICENSE
+  summary: Machine learning metrics for distributed, scalable PyTorch applications.
+  description: |
+    Machine learning metrics for distributed, scalable PyTorch applications.
+  doc_url: https://torchmetrics.readthedocs.io/
+  dev_url: https://github.com/PyTorchLightning/metrics
+
+extra:
+  recipe-maintainers:
+    - open-ce/open-ce-dev-team

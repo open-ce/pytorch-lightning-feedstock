@@ -1,5 +1,5 @@
 {% set name = "pytorch-lightning" %}
-{% set version = "1.1.0" %}
+{% set version = "1.2.8" %}
 
 package:
   name: {{ name|lower }}
@@ -10,7 +10,7 @@ source:
   git_rev: {{ version }}
 
 build:
-  number: 2
+  number: 1
   noarch: python
   string: py_{{ PKG_BUILDNUM }}
   script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed . -vv
@@ -30,6 +30,7 @@ requirements:
     - torchvision-base {{ torchvision }}
     - tqdm  {{ tqdm }}
     - fsspec {{ fsspec }}
+    - torchmetrics {{ torchmetrics }}
 
 test:
   imports:

@@ -13,6 +13,22 @@ tests:
   - name: Run PyTorch-Lightning tests
     command: |
         cd pytorch-lightning
-        pytest -v --ignore='tests/models/test_horovod.py' --ignore='tests/models/test_onnx.py' -k "not test_gpu_stats_monitor_cpu_machine and not test_cli and not test_batch_size_smaller_than_num_gpus and not test_result_obj_predictions and not test_sync_batchnorm_ddp and not test_file_logger_log_hyperparams" tests/
+        pytest -v --ignore='tests/models/test_horovod.py' --ignore='tests/models/test_onnx.py' -k "not test_gpu_stats_monitor_cpu_machine and not test_cli and not test_batch_size_smaller_than_num_gpus and not test_result_obj_predictions and not test_sync_batchnorm_ddp and not test_file_logger_log_hyperparams and not test_resume_legacy_checkpoints and not test_multi_cpu_model_ddp and not test_eval_logging_auto_reduce and not test_metric_collection_wrong_input and not test_models" tests/
   - name: Clean tests
     command: rm -rf pytorch-lightning
+  - name: Setup torchmetrics Tests
+    command: |
+        METRICS_VERSION=$(python -c "import torchmetrics; print(torchmetrics.__version__)")
+        METRICS_VERSION=${METRICS_VERSION#*+}
+        conda install -y git
+        git clone https://github.com/PyTorchLightning/torchmetrics.git
+        cd torchmetrics
+        git checkout v${METRICS_VERSION}
+        conda install -y scikit-learn>=0.22.2 regex typed-ast scikit-image nltk
+        pip install -r requirements/test.txt
+  - name: Run torchmetrics tests
+    command: |
+        cd torchmetrics
+        pytest -v tests/ 
+  - name: Clean tests
+    command: rm -rf torchmetrics
