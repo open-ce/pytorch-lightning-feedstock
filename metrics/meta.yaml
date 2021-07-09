@@ -11,7 +11,7 @@ source:
 
 build:
   noarch: python
-  number: 1 
+  number: 2
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
@@ -25,6 +25,8 @@ requirements:
     - pytorch-base {{ pytorch }}
  
 test:
+  requires:
+    - _pytorch_select  {{ pytorch_select_version }}
   imports:
     - torchmetrics
 

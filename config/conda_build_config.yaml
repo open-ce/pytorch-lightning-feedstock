@@ -1,0 +1,5 @@
+build_type:
+  - "cpu"
+
+pytorch_select_version:
+  - "1.0"
