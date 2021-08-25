@@ -2,5 +2,8 @@ recipes:
   - name : torchmetrics
     path : metrics
 
+  - name : pydeprecate
+    path : pydeprecate
+
   - name : pytorch-lightning
     path : lightning
