@@ -23,6 +23,7 @@ requirements:
     - setuptools {{ setuptools }}
     - python 
     - pytorch-base {{ pytorch }}
+    - tqdm {{ tqdm }}
  
 test:
   imports:
