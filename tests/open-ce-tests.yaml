@@ -24,6 +24,7 @@ tests:
                      "not test_multi_cpu_model_ddp and"
                      "not test_eval_logging_auto_reduce and"
                      "not test_metric_collection_wrong_input and"
+                     "not test_batch_size_smaller_than_num_gpus and"
                      "not test_models"
         )
         TESTSUITES_TO_SKIP=(
