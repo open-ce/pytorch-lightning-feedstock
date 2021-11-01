@@ -35,6 +35,7 @@ tests:
                       tests/helpers/test_datasets.py
                       tests/trainer/test_dataloaders.py
                       tests/trainer/test_trainer.py
+                      tests/trainer/test_trainer_tricks.py
                       tests/trainer/optimization/test_backward_calls.py
                       tests/tuner/test_lr_finder.py
                       tests/tuner/test_scale_batch_size.py
