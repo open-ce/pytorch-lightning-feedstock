@@ -13,7 +13,40 @@ tests:
   - name: Run PyTorch-Lightning tests
     command: |
         cd pytorch-lightning
-        pytest -v --ignore='tests/models/test_horovod.py' --ignore='tests/models/test_onnx.py' -k "not test_gpu_stats_monitor_cpu_machine and not test_cli and not test_batch_size_smaller_than_num_gpus and not test_result_obj_predictions and not test_sync_batchnorm_ddp and not test_file_logger_log_hyperparams and not test_resume_legacy_checkpoints and not test_multi_cpu_model_ddp and not test_eval_logging_auto_reduce and not test_metric_collection_wrong_input and not test_models" tests/
+        SKIPPED_TESTS=(
+                     "not test_gpu_stats_monitor_cpu_machine and"
+                     "not test_cli and"
+                     "not test_batch_size_smaller_than_num_gpus and"
+                     "not test_result_obj_predictions and"
+                     "not test_sync_batchnorm_ddp and"
+                     "not test_file_logger_log_hyperparams and"
+                     "not test_resume_legacy_checkpoints and"
+                     "not test_multi_cpu_model_ddp and"
+                     "not test_eval_logging_auto_reduce and"
+                     "not test_metric_collection_wrong_input and"
+                     "not test_batch_size_smaller_than_num_gpus and"
+                     "not test_models"
+        )
+        TESTSUITES_TO_SKIP=(
+                      tests/models/test_horovod.py
+                      tests/models/test_onnx.py
+                      tests/checkpointing/test_legacy_checkpoints.py
+                      tests/helpers/datasets.py
+                      tests/helpers/test_datasets.py
+                      tests/trainer/test_dataloaders.py
+                      tests/trainer/test_trainer.py
+                      tests/trainer/test_trainer_tricks.py
+                      tests/trainer/optimization/test_backward_calls.py
+                      tests/tuner/test_lr_finder.py
+                      tests/tuner/test_scale_batch_size.py
+        )
+
+        for skipped_test in "${TESTSUITES_TO_SKIP[@]}"
+        do
+           SKIPPED_TEST_SUITES+="--ignore $skipped_test "
+        done
+
+        pytest -k "${SKIPPED_TESTS[*]}" ${SKIPPED_TEST_SUITES} -v tests/
   - name: Clean tests
     command: rm -rf pytorch-lightning
   - name: Setup torchmetrics Tests
@@ -24,11 +57,16 @@ tests:
         git clone https://github.com/PyTorchLightning/torchmetrics.git
         cd torchmetrics
         git checkout v${METRICS_VERSION}
-        conda install -y scikit-learn>=0.22.2 regex typed-ast scikit-image nltk
+        ARCH=$(arch)
+        if test "${ARCH}" == "x86_64"
+        then
+            ARCH="64"
+        fi
+        conda install -y scikit-learn>=0.22.2 regex typed-ast scikit-image nltk gcc_linux-${ARCH}
         pip install -r requirements/test.txt
   - name: Run torchmetrics tests
     command: |
         cd torchmetrics
-        pytest -v tests/ 
+        pytest --ignore='tests/audio/test_si_sdr.py' --ignore='tests/audio/test_si_snr.py' -v tests/
   - name: Clean tests
     command: rm -rf torchmetrics
