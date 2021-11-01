@@ -31,6 +31,13 @@ tests:
                       tests/models/test_horovod.py
                       tests/models/test_onnx.py
                       tests/checkpointing/test_legacy_checkpoints.py
+                      tests/helpers/datasets.py
+                      tests/helpers/test_datasets.py
+                      tests/trainer/test_dataloaders.py
+                      tests/trainer/test_trainer.py
+                      tests/trainer/optimization/test_backward_calls.py
+                      tests/tuner/test_lr_finder.py
+                      tests/tuner/test_scale_batch_size.py
         )
 
         for skipped_test in "${TESTSUITES_TO_SKIP[@]}"
