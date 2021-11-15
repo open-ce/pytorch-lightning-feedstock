@@ -26,7 +26,8 @@ tests:
                      "not test_eval_logging_auto_reduce and"
                      "not test_metric_collection_wrong_input and"
                      "not test_batch_size_smaller_than_num_gpus and"
-                     "not test_models"
+                     "not test_models and"
+                     "not test_rich_progress_bar_import_error"
         )
         TESTSUITES_TO_SKIP=(
                       tests/models/test_horovod.py
@@ -58,16 +59,29 @@ tests:
         git clone https://github.com/PyTorchLightning/torchmetrics.git
         cd torchmetrics
         git checkout v${METRICS_VERSION}
+        git apply ${FEEDSTOCK_DIR}/metrics/0311-fix-tests.patch
         ARCH=$(arch)
         if test "${ARCH}" == "x86_64"
         then
             ARCH="64"
         fi
-        conda install -y scikit-learn>=0.22.2 regex typed-ast scikit-image nltk gcc_linux-${ARCH}
+        conda install -y scikit-learn>=0.22.2 numba=0.52 regex typed-ast scikit-image nltk gcc_linux-${ARCH} coverage cryptography pandas
         pip install -r requirements/test.txt
   - name: Run torchmetrics tests
     command: |
         cd torchmetrics
-        pytest --ignore='tests/audio/test_si_sdr.py' --ignore='tests/audio/test_si_snr.py' -v tests/
+        TESTSUITES_TO_SKIP=(
+                      tests/audio/test_si_sdr.py
+                      tests/audio/test_si_snr.py
+                      tests/audio/test_pesq.py
+                      tests/text/test_cer.py
+        )
+
+        for skipped_test in "${TESTSUITES_TO_SKIP[@]}"
+        do
+           SKIPPED_TEST_SUITES+="--ignore $skipped_test "
+        done
+
+        pytest ${SKIPPED_TEST_SUITES} -v tests/
   - name: Clean tests
     command: rm -rf torchmetrics
