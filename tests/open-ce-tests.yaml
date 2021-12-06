@@ -8,7 +8,7 @@ tests:
         cd pytorch-lightning
         git checkout ${PL_COMMIT}
         git apply $FEEDSTOCK_DIR/lightning/0301-fix-tests.patch
-        conda install -y scikit-learn>=0.22.2 numba=0.52 regex typed-ast pandas scikit-image coverage cryptography
+        conda install -y scikit-learn>=0.22.2 numba regex typed-ast pandas scikit-image coverage cryptography
         pip install -r requirements/test.txt
         pip install sklearn omegaconf rich
   - name: Run PyTorch-Lightning tests
