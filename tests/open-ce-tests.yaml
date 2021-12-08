@@ -8,6 +8,7 @@ tests:
         cd pytorch-lightning
         git checkout ${PL_COMMIT}
         git apply $FEEDSTOCK_DIR/lightning/0301-fix-tests.patch
+        git apply $FEEDSTOCK_DIR/lightning/0302-skip-horovod-tests.patch
         conda install -y scikit-learn>=0.22.2 numba regex typed-ast pandas scikit-image coverage cryptography
         pip install -r requirements/test.txt
         pip install sklearn omegaconf rich jsonargparse docstring-parser
@@ -15,7 +16,12 @@ tests:
     command: |
         cd pytorch-lightning
         SKIPPED_TESTS=(
-                     "not test_gpu_stats_monitor_cpu_machine"
+                     "not test_gpu_stats_monitor_cpu_machine and"
+                     "not test_amp_gpus and"
+                     "not test_boring_lite_model_single_device and"
+                     "not test_lite_module_forward_conversion and"
+                     "not test_gradient_clipping_by_norm and"
+                     "not test_gradient_clipping_by_value"
         )
         TESTSUITES_TO_SKIP=(
                       tests/models/test_onnx.py
@@ -50,6 +56,6 @@ tests:
   - name: Run torchmetrics tests
     command: |
         cd torchmetrics
-        pytest -v test/
+        pytest -v tests/
   - name: Clean tests
     command: rm -rf torchmetrics
