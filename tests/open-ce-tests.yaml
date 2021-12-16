@@ -56,6 +56,16 @@ tests:
   - name: Run torchmetrics tests
     command: |
         cd torchmetrics
-        pytest -v tests/
+        SKIPPED_TESTS=()
+        TESTSUITES_TO_SKIP=(
+                      tests/image/test_lpips.py
+                      tests/text/test_cer.py
+        )
+        for skipped_test in "${TESTSUITES_TO_SKIP[@]}"
+        do
+           SKIPPED_TEST_SUITES+="--ignore $skipped_test "
+        done
+
+        pytest -k "${SKIPPED_TESTS[*]}" ${SKIPPED_TEST_SUITES} -v tests/
   - name: Clean tests
     command: rm -rf torchmetrics
