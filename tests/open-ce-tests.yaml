@@ -56,7 +56,9 @@ tests:
   - name: Run torchmetrics tests
     command: |
         cd torchmetrics
-        SKIPPED_TESTS=()
+        SKIPPED_TESTS=(
+                     "not test_on_real_audio"
+        )
         TESTSUITES_TO_SKIP=(
                       tests/image/test_lpips.py
                       tests/text/test_cer.py
