@@ -64,7 +64,7 @@ tests:
         then
             ARCH="64"
         fi
-        conda install -y scikit-learn>=0.22.2 numba=0.52 regex typed-ast scikit-image nltk gcc_linux-${ARCH} coverage cryptography pandas
+        conda install -y scikit-learn>=0.22.2 numba regex typed-ast scikit-image nltk gcc_linux-${ARCH} coverage cryptography pandas
         pip install -r requirements/test.txt
   - name: Run torchmetrics tests
     command: |
