@@ -19,7 +19,7 @@ requirements:
     - pip
     - python
   run:
-    - python <3.10
+    - python
 
 test:
   imports:
