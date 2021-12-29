@@ -1,0 +1,49 @@
+diff --git a/tests/models/test_horovod.py b/tests/models/test_horovod.py
+index 59a22cf16..9401755ea 100644
+--- a/tests/models/test_horovod.py
++++ b/tests/models/test_horovod.py
+@@ -114,7 +114,7 @@ def test_horovod_cpu_implicit(tmpdir):
+     _run_horovod(trainer_options)
+ 
+ 
+-@RunIf(min_gpus=2, skip_windows=True, horovod_nccl=True)
++@RunIf(min_gpus=2, skip_windows=True, horovod=True, horovod_nccl=True)
+ def test_horovod_multi_gpu(tmpdir):
+     """Test Horovod with multi-GPU support."""
+     trainer_options = dict(
+@@ -131,7 +131,7 @@ def test_horovod_multi_gpu(tmpdir):
+     _run_horovod(trainer_options, on_gpu=True)
+ 
+ 
+-@RunIf(min_gpus=2, skip_windows=True, horovod_nccl=True)
++@RunIf(min_gpus=2, skip_windows=True, horovod=True, horovod_nccl=True)
+ def test_horovod_multi_gpu_grad_by_value(tmpdir):
+     """Test Horovod with multi-GPU support."""
+     trainer_options = dict(
+@@ -172,7 +172,7 @@ def test_horovod_apex(tmpdir):
+     _run_horovod(trainer_options, on_gpu=True)
+ 
+ 
+-@RunIf(min_gpus=2, skip_windows=True, horovod_nccl=True)
++@RunIf(min_gpus=2, skip_windows=True, horovod=True, horovod_nccl=True)
+ def test_horovod_amp(tmpdir):
+     """Test Horovod with multi-GPU support using native amp."""
+     trainer_options = dict(
+@@ -191,7 +191,7 @@ def test_horovod_amp(tmpdir):
+     _run_horovod(trainer_options, on_gpu=True)
+ 
+ 
+-@RunIf(min_gpus=2, skip_windows=True, horovod_nccl=True)
++@RunIf(min_gpus=2, skip_windows=True, horovod=True, horovod_nccl=True)
+ def test_horovod_gather(tmpdir):
+     """Test Horovod with multi-GPU support using native amp."""
+     trainer_options = dict(
+@@ -208,7 +208,7 @@ def test_horovod_gather(tmpdir):
+     _run_horovod(trainer_options, on_gpu=True)
+ 
+ 
+-@RunIf(min_gpus=1, skip_windows=True, horovod_nccl=True)
++@RunIf(min_gpus=1, skip_windows=True, horovod=True, horovod_nccl=True)
+ def test_horovod_transfer_batch_to_gpu(tmpdir):
+     class TestTrainingStepModel(BoringModel):
+         def training_step(self, batch, *args, **kwargs):
