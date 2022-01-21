@@ -1,10 +1,10 @@
 diff --git a/requirements/test.txt b/requirements/test.txt
-index b90d5b6..9fdd8c3 100644
+index c78e1e9..e437106 100644
 --- a/requirements/test.txt
 +++ b/requirements/test.txt
 @@ -32,6 +32,4 @@ speechmetrics @ https://github.com/aliutkus/speechmetrics/archive/refs/heads/mas
  # text
- jiwer>=2.2.0
+ jiwer>=2.3.0
  rouge-score>=0.0.4
 -bert_score==0.3.10
 -transformers>=4.0
