@@ -10,7 +10,7 @@ source:
   git_rev: {{ version }}
   patches:
     - 0100-remove-setuptools-from-requirements.patch
-	
+
 build:
   number: 1
   noarch: python
