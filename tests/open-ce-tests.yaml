@@ -32,6 +32,7 @@ tests:
                       tests/trainer/test_trainer.py
                       tests/tuner/test_scale_batch_size.py
                       tests/trainer/test_trainer_tricks.py
+                      tests/helpers/test_datasets.py
         )
 
         for skipped_test in "${TESTSUITES_TO_SKIP[@]}"
