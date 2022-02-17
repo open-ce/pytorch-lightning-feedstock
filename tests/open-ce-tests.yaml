@@ -21,12 +21,17 @@ tests:
                      "not test_boring_lite_model_single_device and"
                      "not test_lite_module_forward_conversion and"
                      "not test_gradient_clipping_by_norm and"
-                     "not test_gradient_clipping_by_value"
+                     "not test_gradient_clipping_by_value and"
+                     "not test_models and"
+                     "not tests.helpers.datasets.TrialMNIST"
         )
         TESTSUITES_TO_SKIP=(
                       tests/models/test_onnx.py
                       tests/checkpointing/test_legacy_checkpoints.py
                       tests/trainer/test_dataloaders.py
+                      tests/trainer/test_trainer.py
+                      tests/tuner/test_scale_batch_size.py
+                      tests/trainer/test_trainer_tricks.py
         )
 
         for skipped_test in "${TESTSUITES_TO_SKIP[@]}"
