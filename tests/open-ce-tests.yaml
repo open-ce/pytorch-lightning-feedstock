@@ -21,12 +21,18 @@ tests:
                      "not test_boring_lite_model_single_device and"
                      "not test_lite_module_forward_conversion and"
                      "not test_gradient_clipping_by_norm and"
-                     "not test_gradient_clipping_by_value"
+                     "not test_gradient_clipping_by_value and"
+                     "not test_models and"
+                     "not tests.helpers.datasets.TrialMNIST"
         )
         TESTSUITES_TO_SKIP=(
                       tests/models/test_onnx.py
                       tests/checkpointing/test_legacy_checkpoints.py
                       tests/trainer/test_dataloaders.py
+                      tests/trainer/test_trainer.py
+                      tests/tuner/test_scale_batch_size.py
+                      tests/trainer/test_trainer_tricks.py
+                      tests/helpers/test_datasets.py
         )
 
         for skipped_test in "${TESTSUITES_TO_SKIP[@]}"
@@ -56,18 +62,21 @@ tests:
   - name: Run torchmetrics tests
     command: |
         cd torchmetrics
-        SKIPPED_TESTS=(
-                     "not test_on_real_audio"
+        TESTSUITES_TO_RUN=(
+                      tests/audio/test_pit.py
+                      tests/bases/test_aggregation.py
+                      tests/classification/test_accuracy.py
+                      tests/detection/test_map.py
+                      tests/functional/test_self_supervised.py
+                      tests/image/test_inception.py
+                      tests/pairwise/test_pairwise_distance.py
+                      tests/regression/test_r2.py
+                      tests/retrieval/test_ndcg.py
         )
-        TESTSUITES_TO_SKIP=(
-                      tests/image/test_lpips.py
-                      tests/text/test_cer.py
-        )
-        for skipped_test in "${TESTSUITES_TO_SKIP[@]}"
+        for test_suite in "${TESTSUITES_TO_RUN[@]}"
         do
-           SKIPPED_TEST_SUITES+="--ignore $skipped_test "
+          TEST_SUITES+="${test_suite} "
         done
-
-        pytest -k "${SKIPPED_TESTS[*]}" ${SKIPPED_TEST_SUITES} -v tests/
+        pytest -v ${TEST_SUITES}
   - name: Clean tests
     command: rm -rf torchmetrics
