@@ -12,12 +12,14 @@ source:
     - 0100-remove-setuptools-from-requirements.patch
 
 build:
-  number: 1
+  number: 2
   noarch: python
   string: pyh{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
   script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed . -vv
 
 requirements:
+  build:
+    - git-lfs
   host:
     - pip {{ pip }}
     - python 
