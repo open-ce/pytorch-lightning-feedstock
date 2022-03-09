@@ -12,7 +12,7 @@ source:
     - 0100-remove-setuptools-from-requirements.patch
 
 build:
-  number: 2
+  number: 3
   noarch: python
   string: pyh{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
   script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed . -vv
@@ -35,7 +35,7 @@ requirements:
     - tqdm  {{ tqdm }}
     - fsspec {{ fsspec }}
     - torchmetrics {{ torchmetrics }}
-    - pyDeprecate 0.3.2
+    - pyDeprecate 0.3.1
 test:
   imports:
     - pytorch_lightning
