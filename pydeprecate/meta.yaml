@@ -1,5 +1,5 @@
 {% set name = "pyDeprecate" %}
-{% set version = "0.3.1" %}
+{% set version = "0.3.2" %}
 
 package:
   name: {{ name|lower }}
@@ -7,11 +7,11 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: fa26870924d3475621c344045c2c01a16ba034113a902600c78e75b3fac5f72c
+  sha256: d481116cc5d7f6c473e7c4be820efdd9b90a16b594b350276e9e66a6cb5bdd29
 
 build:
   noarch: python
-  number: 2
+  number: 1
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
