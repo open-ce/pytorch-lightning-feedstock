@@ -8,8 +8,6 @@ package:
 source:
   git_url: https://github.com/PyTorchLightning/pytorch-lightning
   git_rev: {{ version }}
-  patches:
-    - 0100-remove-setuptools-from-requirements.patch
 
 build:
   number: 1
@@ -35,7 +33,7 @@ requirements:
     - tqdm  {{ tqdm }}
     - fsspec {{ fsspec }}
     - torchmetrics {{ torchmetrics }}
-    - pyDeprecate 0.3.1
+    - pyDeprecate 0.3.2
 test:
   imports:
     - pytorch_lightning
