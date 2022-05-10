@@ -52,7 +52,6 @@ tests:
         git clone https://github.com/PyTorchLightning/torchmetrics.git
         cd torchmetrics
         git checkout v${METRICS_VERSION}
-        git apply ${FEEDSTOCK_DIR}/metrics/0311-fix-tests.patch
         ARCH=$(arch)
         if test "${ARCH}" == "x86_64"
         then
@@ -60,6 +59,7 @@ tests:
         fi
         conda install -y scikit-learn>=0.22.2 numba regex typed-ast scikit-image nltk gcc_linux-${ARCH} coverage cryptography pandas
         pip install -r requirements/test.txt
+        pip install torch-fidelity
   - name: Run torchmetrics tests
     command: |
         cd torchmetrics
@@ -68,7 +68,6 @@ tests:
                       tests/bases/test_aggregation.py
                       tests/classification/test_accuracy.py
                       tests/detection/test_map.py
-                      tests/functional/test_self_supervised.py
                       tests/image/test_inception.py
                       tests/pairwise/test_pairwise_distance.py
                       tests/regression/test_r2.py
