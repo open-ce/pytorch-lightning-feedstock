@@ -1,5 +1,5 @@
 {% set name = "pytorch-lightning" %}
-{% set version = "1.6.3" %}
+{% set version = "1.6.5" %}
 
 package:
   name: {{ name|lower }}
@@ -37,6 +37,8 @@ requirements:
 test:
   imports:
     - pytorch_lightning
+  commands:
+    - pip check
 
 about:
   home: https://pypi.org/project/pytorch-lightning/
