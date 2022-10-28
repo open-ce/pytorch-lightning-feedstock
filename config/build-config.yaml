@@ -5,5 +5,14 @@ recipes:
   - name : pydeprecate
     path : pydeprecate
 
+  - name : lightning-utilities
+    path : lightning-utilities
+
+  - name : lightning-cloud
+    path : lightning-cloud
+
+  - name : lightning-app
+    path : lightning-app
+
   - name : pytorch-lightning
     path : lightning

@@ -1,43 +1,37 @@
-{% set name = "pytorch-lightning" %}
-{% set version = "1.7.7" %}
+{% set name = "lightning-cloud" %}
+{% set version = "0.5.7" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  git_url: https://github.com/PyTorchLightning/pytorch-lightning
-  git_rev: {{ version }}
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/lightning_cloud-{{ version }}.tar.gz
+  sha256: d8bfd825403686d686788d19f77495400e25d0d925667cf086a647eacb5ac8f5
 
 build:
   number: 1
   noarch: python
   string: pyh{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
-  script: export PACKAGE_NAME=pytorch; {{ PYTHON }} -m pip install . --no-deps --ignore-installed . -vv
+  script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed . -vv
 
 requirements:
-  build:
-    - git-lfs
   host:
     - pip {{ pip }}
     - python 
   run:
-    - future {{ future }} 
-    - packaging
-    - numpy {{ numpy }} 
     - python
-    - pyyaml {{ pyyaml }}
-    - tensorboard {{ tensorboard }} 
-    - pytorch-base {{ pytorch }} 
-    - torchvision-base {{ torchvision }}
-    - tqdm  {{ tqdm }}
-    - fsspec {{ fsspec }}
-    - torchmetrics {{ torchmetrics }}
-    - pyDeprecate 0.3.2
+    - click
+    - requests
+    - rich
+    - pyjwt
+    - fastapi
+    - six
+    - websocket-client
 
 test:
   imports:
-    - pytorch_lightning
+    - lightning_cloud
   commands:
     - pip check
 

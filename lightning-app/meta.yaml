@@ -1,43 +1,49 @@
-{% set name = "pytorch-lightning" %}
-{% set version = "1.7.7" %}
+{% set name = "lightning-app" %}
+{% set version = "0.6.3" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  git_url: https://github.com/PyTorchLightning/pytorch-lightning
-  git_rev: {{ version }}
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 238aabb747fef3911d5551039e8c4d3d24d73d9b452a6042eb19b3813dceeee5
 
 build:
   number: 1
   noarch: python
   string: pyh{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
-  script: export PACKAGE_NAME=pytorch; {{ PYTHON }} -m pip install . --no-deps --ignore-installed . -vv
+  script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed . -vv
 
 requirements:
-  build:
-    - git-lfs
   host:
     - pip {{ pip }}
     - python 
   run:
-    - future {{ future }} 
     - packaging
-    - numpy {{ numpy }} 
     - python
-    - pyyaml {{ pyyaml }}
-    - tensorboard {{ tensorboard }} 
-    - pytorch-base {{ pytorch }} 
-    - torchvision-base {{ torchvision }}
-    - tqdm  {{ tqdm }}
+    - lightning-utilities
+    - lightning-cloud
+    - deepdiff
+    - croniter
+    - fastapi 
+    - websockets
+    - click
+    - requests
+    - rich
     - fsspec {{ fsspec }}
-    - torchmetrics {{ torchmetrics }}
-    - pyDeprecate 0.3.2
+    - uvicorn
+    - six
+    - websocket-client
+    - beautifulsoup4
+    - starsessions
+    - s3fs
+    - arrow 
+    - traitlets
 
 test:
   imports:
-    - pytorch_lightning
+    - lightning_app 
   commands:
     - pip check
 
