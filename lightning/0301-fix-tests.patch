@@ -1,10 +1,12 @@
-diff --git a/requirements/test.txt b/requirements/test.txt
-index de749e233..17b84ed22 100644
---- a/requirements/test.txt
-+++ b/requirements/test.txt
-@@ -11,5 +11,4 @@ pre-commit>=1.0
+diff --git a/requirements/pytorch/test.txt b/requirements/pytorch/test.txt
+index fbd65ff0e..94cdcfa92 100644
+--- a/requirements/pytorch/test.txt
++++ b/requirements/pytorch/test.txt
+@@ -9,7 +9,6 @@ pre-commit==2.20.0
  # needed in tests
- cloudpickle>=1.3
- scikit-learn>0.22.1
--onnxruntime
- pandas  # needed in benchmarks
+ cloudpickle>=1.3, <=2.1.0
+ scikit-learn>0.22.1, <1.1.3
+-onnxruntime<1.13.0
+ psutil<5.9.4 # for `DeviceStatsMonitor`
+ pandas>1.0, <1.5.2  # needed in benchmarks
+ fastapi<0.87.0
