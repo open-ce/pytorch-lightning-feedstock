@@ -1,0 +1,44 @@
+{% set version = "0.0.1" %}
+
+package:
+  name: lightning-api-access
+  version: {{ version }}
+
+source:
+  url: https://files.pythonhosted.org/packages/bf/bf/c3937a5a981a429a66bdd186454d1ecaf311c0337812d6bce2045c817835/lightning_api_access-{{ version }}-py3-none-any.whl
+  sha256: dd9dd9a2a5b32b563fd6609e6f01c582a41f9a6239d8e6012d7e5ec3c9a286aa
+
+build:
+  noarch: python
+  number: 1
+  script: "python -m pip install lightning_api_access-{{ version }}*.whl --no-deps --ignore-installed -vv "
+
+requirements:
+  host:
+    - python  
+    - pip
+  run:
+    - python   
+    - lightning
+    - fastapi
+    - websockets
+    - deepdiff
+    - lightning-cloud
+    - uvicorn
+    - bs4
+    - croniter
+
+test:
+  imports:
+    - lightning_api_access
+
+
+about:
+  home: https://github.com/Lightning-AI/LAI-API-Access-UI-Component
+  license: Apache License 2.0
+#  license_file: LICENSE
+  summary: Lightning API Access UI Component
+
+extra:
+  recipe-maintainers:
+    - open-ce/open-ce-dev-team

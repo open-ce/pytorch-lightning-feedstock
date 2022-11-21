@@ -1,13 +1,13 @@
 {% set name = "lightning-app" %}
-{% set version = "0.6.3" %}
+{% set version = "1.8.2" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 238aabb747fef3911d5551039e8c4d3d24d73d9b452a6042eb19b3813dceeee5
+  url: https://github.com/Lightning-AI/lightning/releases/download/{{ version }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 990f9af72cbc79c0f1536486b1abf86aca7dfccbd330ba718f9af61e2c837756
 
 build:
   number: 1
@@ -22,8 +22,10 @@ requirements:
   run:
     - packaging
     - python
+    - lightning
     - lightning-utilities
     - lightning-cloud
+    - lightning-api-access
     - deepdiff
     - croniter
     - fastapi 
@@ -40,12 +42,14 @@ requirements:
     - s3fs
     - arrow 
     - traitlets
+    - psutil
+    - inquirer
 
 test:
   imports:
     - lightning_app 
-  commands:
-    - pip check
+#  commands:
+#    - pip check
 
 about:
   home: https://pypi.org/project/pytorch-lightning/

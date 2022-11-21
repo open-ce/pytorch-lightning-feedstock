@@ -1,19 +1,19 @@
-{% set name = "pytorch-lightning" %}
-{% set version = "1.8.1" %}
+{% set name = "lightning" %}
+{% set version = "1.8.2" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  git_url: https://github.com/PyTorchLightning/pytorch-lightning
+  git_url: https://github.com/Lightning-AI/lightning
   git_rev: {{ version }}
 
 build:
   number: 1
   noarch: python
   string: pyh{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
-  script: export PACKAGE_NAME=pytorch; {{ PYTHON }} -m pip install . --no-deps --ignore-installed . -vv
+  script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed . -vv
 
 requirements:
   build:
@@ -36,14 +36,14 @@ requirements:
     - pyDeprecate 0.3.2
     - lightning-utilities
 
-test:
-  imports:
-    - pytorch_lightning
-  commands:
-    - pip check
+#test:
+#  imports:
+#    - lightning
+#  commands:
+#    - pip check
 
 about:
-  home: https://pypi.org/project/pytorch-lightning/
+  home: https://github.com/Lightning-AI/lightning
   summary: PyTorch Lightning is the lightweight PyTorch wrapper for ML researchers. Scale your models. Write less boilerplate.
   description: PyTorch Lightning is the lightweight PyTorch wrapper for ML researchers. Scale your models. Write less boilerplate.
   license: Apache-2.0

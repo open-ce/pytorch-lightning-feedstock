@@ -11,8 +11,11 @@ recipes:
   - name : lightning-cloud
     path : lightning-cloud
 
+  - name : lightning-api-access
+    path : lightning-api-access
+
   - name : lightning-app
     path : lightning-app
 
-  - name : pytorch-lightning
+  - name : lightning
     path : lightning

@@ -8,9 +8,8 @@ tests:
         cd pytorch-lightning
         git checkout ${PL_COMMIT}
         git apply $FEEDSTOCK_DIR/lightning/0301-fix-tests.patch
-        git apply $FEEDSTOCK_DIR/lightning/0302-skip-horovod-tests.patch
-        conda install -y scikit-learn>=0.22.2 numba regex typed-ast pandas scikit-image coverage cryptography
-        pip install -r requirements/test.txt
+        conda install -y "scikit-learn>=0.22.2, <1.1.3" regex typed-ast pandas scikit-image coverage cryptography psutil
+        pip install -r requirements/pytorch/test.txt
         pip install sklearn omegaconf rich jsonargparse docstring-parser
   - name: Run PyTorch-Lightning tests
     command: |
@@ -33,6 +32,10 @@ tests:
                      "not test_callbacks_restore"
         )
         TESTSUITES_TO_SKIP=(
+                      tests/tests_app/utilities/packaging/test_app_config.py
+                      tests/tests_app/core/test_queues.py
+                      tests/tests_pytorch/models/test_onnx.py
+                      tests/tests_app_examples/test_commands_and_api.py
                       tests/models/test_onnx.py
                       tests/checkpointing/test_legacy_checkpoints.py
                       tests/trainer/test_dataloaders.py
@@ -86,7 +89,6 @@ tests:
         do
           TEST_SUITES+="${test_suite} "
         done
-
         pytest -v ${TEST_SUITES}
   - name: Clean tests
     command: rm -rf torchmetrics
