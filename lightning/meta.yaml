@@ -36,11 +36,11 @@ requirements:
     - pyDeprecate 0.3.2
     - lightning-utilities
 
-#test:
-#  imports:
-#    - lightning
-#  commands:
-#    - pip check
+test:
+  imports:
+    - lightning
+  commands:
+    - pip check
 
 about:
   home: https://github.com/Lightning-AI/lightning

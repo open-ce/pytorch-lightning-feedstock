@@ -22,28 +22,28 @@ requirements:
   run:
     - packaging
     - python
-    - lightning
+    - lightning {{ pytorch_lightning }}
     - lightning-utilities
     - lightning-cloud
     - lightning-api-access
-    - deepdiff
-    - croniter
+    - deepdiff >=5.7.0, <=5.8.1
+    - croniter >=1.3.0, <1.4.0
     - fastapi 
     - websockets
-    - click
-    - requests
+    - click {{ click }}
+    - requests {{ requests }}
     - rich
     - fsspec {{ fsspec }}
     - uvicorn
-    - six
+    - six {{ six }}
     - websocket-client
     - beautifulsoup4
-    - starsessions
-    - s3fs
-    - arrow 
-    - traitlets
-    - psutil
-    - inquirer
+    - starsessions >=1.2.1, <2.0
+    - s3fs >=2022.5.0, <2022.8.3
+    - arrow >=1.2.0, <1.2.4
+    - traitlets >=5.3.0, <=5.4.0
+    - psutil {{ psutil }}
+    - inquirer >=2.10.0
 
 test:
   imports:
@@ -52,9 +52,9 @@ test:
 #    - pip check
 
 about:
-  home: https://pypi.org/project/pytorch-lightning/
-  summary: PyTorch Lightning is the lightweight PyTorch wrapper for ML researchers. Scale your models. Write less boilerplate.
-  description: PyTorch Lightning is the lightweight PyTorch wrapper for ML researchers. Scale your models. Write less boilerplate.
+  home: https://github.com/Lightning-AI/lightning
+  summary: Use Lightning Apps to build everything from production-ready, multi-cloud ML systems to simple research demos.
+  description: Use Lightning Apps to build everything from production-ready, multi-cloud ML systems to simple research demos.
   license: Apache-2.0
   license_family: Apache
   license_file: LICENSE

@@ -19,7 +19,7 @@ requirements:
     - pip
   run:
     - python   
-    - lightning
+    - lightning {{ pytorch_lightning }}
     - fastapi
     - websockets
     - deepdiff
@@ -36,8 +36,8 @@ test:
 about:
   home: https://github.com/Lightning-AI/LAI-API-Access-UI-Component
   license: Apache License 2.0
-#  license_file: LICENSE
   summary: Lightning API Access UI Component
+  description: Lightning API Access UI Component
 
 extra:
   recipe-maintainers:
