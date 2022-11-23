@@ -7,3 +7,6 @@ recipes:
 
   - name : pytorch-lightning
     path : lightning
+
+  - name : lightning-utilities
+    path : lightning-utilities

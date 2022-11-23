@@ -1,19 +1,19 @@
 {% set name = "pytorch-lightning" %}
-{% set version = "1.6.5" %}
+{% set version = "1.8.2" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  git_url: https://github.com/PyTorchLightning/pytorch-lightning
+  git_url: https://github.com/Lightning-AI/lightning
   git_rev: {{ version }}
 
 build:
   number: 1
   noarch: python
   string: pyh{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
-  script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed . -vv
+  script: export PACKAGE_NAME=pytorch; {{ PYTHON }} -m pip install . --no-deps --ignore-installed . -vv
 
 requirements:
   build:
@@ -34,6 +34,8 @@ requirements:
     - fsspec {{ fsspec }}
     - torchmetrics {{ torchmetrics }}
     - pyDeprecate 0.3.2
+    - lightning-utilities
+
 test:
   imports:
     - pytorch_lightning
