@@ -1,0 +1,42 @@
+{% set name = "lightning-utilities" %}
+{% set version = "0.3.0" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: d769ab9b76ebdee3243d1051d509aafee57d7947734ddc22977deef8a6427f2f 
+
+build:
+  number: 1
+  noarch: python
+  string: pyh{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
+  script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed . -vv
+
+requirements:
+  host:
+    - pip {{ pip }}
+    - python 
+  run:
+    - python
+    - fire
+
+test:
+  imports:
+    - lightning_utilities
+  commands:
+    - pip check
+
+about:
+  home: https://github.com/Lightning-AI/utilities
+  summary: Lightning Utilities.
+  description: Lightning Utilities.
+  license: Apache-2.0
+  license_family: Apache
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - open-ce/open-ce-dev-team
