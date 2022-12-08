@@ -8,50 +8,23 @@ tests:
         cd pytorch-lightning
         git checkout ${PL_COMMIT}
         git apply $FEEDSTOCK_DIR/lightning/0301-fix-tests.patch
-        git apply $FEEDSTOCK_DIR/lightning/0302-skip-horovod-tests.patch
-        conda install -y scikit-learn>=0.22.2 numba regex typed-ast pandas scikit-image coverage cryptography
-        pip install -r requirements/test.txt
+        conda install -y "scikit-learn>=0.22.2, <1.1.3" regex typed-ast pandas scikit-image coverage cryptography psutil
+        pip install -r requirements/pytorch/test.txt
         pip install sklearn omegaconf rich jsonargparse docstring-parser
   - name: Run PyTorch-Lightning tests
     command: |
         cd pytorch-lightning
-        SKIPPED_TESTS=(
-                     "not test_gpu_stats_monitor_cpu_machine and"
-                     "not test_amp_gpus and"
-                     "not test_boring_lite_model_single_device and"
-                     "not test_lite_module_forward_conversion and"
-                     "not test_gradient_clipping_by_norm and"
-                     "not test_gradient_clipping_by_value and"
-                     "not test_models and"
-                     "not tests.helpers.datasets.TrialMNIST and"
-                     "not test_optimizers_and_lr_schedulers and"
-                     "not test_ddp_all_dataloaders_passed_to_fit and"
-                     "not test_multiple_optimizers_step and"
-                     "not test_unbalanced_logging_with_multiple_optimizers and"
-                     "not test_proper_refcount and"
-                     "not test_tensor_to_float_conversion and"
-                     "not test_callbacks_restore"
+        TESTSUITES_TO_RUN=(
+                      tests/tests_pytorch/test_cli.py
+                      tests/tests_pytorch/accelerators
+                      tests/tests_pytorch/trainer/test_trainer.py
+                      tests/tests_pytorch/strategies
         )
-        TESTSUITES_TO_SKIP=(
-                      tests/models/test_onnx.py
-                      tests/checkpointing/test_legacy_checkpoints.py
-                      tests/trainer/test_dataloaders.py
-                      tests/trainer/test_trainer.py
-                      tests/tuner/test_scale_batch_size.py
-                      tests/trainer/test_trainer_tricks.py
-                      tests/helpers/test_datasets.py
-                      tests/utilities/test_auto_restart.py
-                      tests/strategies/test_common.py
-                      tests/models/test_amp.py
-                      tests/models/test_restore.py
-        )
-
-        for skipped_test in "${TESTSUITES_TO_SKIP[@]}"
+        for test_suite in "${TESTSUITES_TO_RUN[@]}"
         do
-           SKIPPED_TEST_SUITES+="--ignore $skipped_test "
+           TEST_SUITES+="$test_suite "
         done
-
-        pytest -k "${SKIPPED_TESTS[*]}" ${SKIPPED_TEST_SUITES} -v tests/
+        pytest -v ${TEST_SUITES}
   - name: Clean tests
     command: rm -rf pytorch-lightning
   - name: Setup torchmetrics Tests
@@ -67,8 +40,7 @@ tests:
         then
             ARCH="64"
         fi
-        conda install -y scikit-learn>=0.22.2 numba regex typed-ast scikit-image nltk gcc_linux-${ARCH} coverage cryptography pandas
-        pip install -r requirements/test.txt
+        conda install -y scikit-learn>=0.22.2 regex typed-ast scikit-image nltk gcc_linux-${ARCH} coverage cryptography pandas
         pip install torch-fidelity
   - name: Run torchmetrics tests
     command: |
