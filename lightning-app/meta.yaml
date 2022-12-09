@@ -49,9 +49,9 @@ test:
 #    - pip check
 
 about:
-  home: https://pypi.org/project/pytorch-lightning/
-  summary: PyTorch Lightning is the lightweight PyTorch wrapper for ML researchers. Scale your models. Write less boilerplate.
-  description: PyTorch Lightning is the lightweight PyTorch wrapper for ML researchers. Scale your models. Write less boilerplate.
+  home: https://github.com/Lightning-AI/lightning
+  summary: Use Lightning Apps to build everything from production-ready, multi-cloud ML systems to simple research demos.
+  description: Use Lightning Apps to build everything from production-ready, multi-cloud ML systems to simple research demos.
   license: Apache-2.0
   license_family: Apache
   license_file: LICENSE
