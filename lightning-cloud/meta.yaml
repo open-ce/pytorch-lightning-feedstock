@@ -1,0 +1,48 @@
+{% set name = "lightning-cloud" %}
+{% set version = "0.5.11" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/lightning_cloud-{{ version }}.tar.gz
+  sha256: 33ca411d8f88dd690ba7af82260e1e27546471954cfa042221781627144288b7
+
+build:
+  number: 1
+  noarch: python
+  string: pyh{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
+  script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed . -vv
+
+requirements:
+  host:
+    - pip {{ pip }}
+    - python 
+  run:
+    - python
+    - click {{ click }}
+    - requests {{ requests }}
+    - rich
+    - pyjwt
+    - fastapi
+    - six
+    - websocket-client
+
+test:
+  imports:
+    - lightning_cloud
+  commands:
+    - pip check
+
+about:
+  home: https://lightning.ai/
+  summary: Lightning Cloud.
+  description: Lightning Cloud.
+  license: Apache-2.0
+  license_family: Apache
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - open-ce/open-ce-dev-team

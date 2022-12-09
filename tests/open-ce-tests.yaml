@@ -18,7 +18,7 @@ tests:
                       tests/tests_pytorch/test_cli.py
                       tests/tests_pytorch/accelerators
                       tests/tests_pytorch/trainer/test_trainer.py
-                      tests/tests_pytorch/strategies
+                      tests/tests_pytorch/strategies/test_ddp.py
         )
         for test_suite in "${TESTSUITES_TO_RUN[@]}"
         do
@@ -41,6 +41,7 @@ tests:
             ARCH="64"
         fi
         conda install -y scikit-learn>=0.22.2 regex typed-ast scikit-image nltk gcc_linux-${ARCH} coverage cryptography pandas
+        pip install -r requirements/test.txt
         pip install torch-fidelity
   - name: Run torchmetrics tests
     command: |
@@ -50,7 +51,6 @@ tests:
                       tests/bases/test_aggregation.py
                       tests/classification/test_accuracy.py
                       tests/detection/test_map.py
-                      tests/image/test_inception.py
                       tests/regression/test_r2.py
                       tests/retrieval/test_ndcg.py
         )

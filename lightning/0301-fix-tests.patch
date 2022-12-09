@@ -1,10 +1,10 @@
 diff --git a/requirements/pytorch/test.txt b/requirements/pytorch/test.txt
-index 5ba99b269..a646c027a 100644
+index acb3c4b97..4e55341de 100644
 --- a/requirements/pytorch/test.txt
 +++ b/requirements/pytorch/test.txt
 @@ -9,7 +9,6 @@ pre-commit==2.20.0
  # needed in tests
- cloudpickle>=1.3, <=2.1.0
+ cloudpickle>=1.3, <2.3.0
  scikit-learn>0.22.1, <1.1.3
 -onnxruntime<1.14.0
  psutil<5.9.4 # for `DeviceStatsMonitor`
