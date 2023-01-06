@@ -1,5 +1,5 @@
 {% set name = "lightning-app" %}
-{% set version = "1.8.4" %}
+{% set version = "1.8.6" %}
 
 package:
   name: {{ name|lower }}
