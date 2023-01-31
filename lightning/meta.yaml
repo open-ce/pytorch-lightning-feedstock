@@ -1,5 +1,5 @@
 {% set name = "pytorch-lightning" %}
-{% set version = "1.8.2" %}
+{% set version = "1.8.6" %}
 
 package:
   name: {{ name|lower }}
@@ -27,7 +27,8 @@ requirements:
     - numpy {{ numpy }} 
     - python
     - pyyaml {{ pyyaml }}
-    - tensorboard {{ tensorboard }} 
+#    - tensorboard {{ tensorboard }}
+    - tensorboardX
     - pytorch-base {{ pytorch }} 
     - torchvision-base {{ torchvision }}
     - tqdm  {{ tqdm }}

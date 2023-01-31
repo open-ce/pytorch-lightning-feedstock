@@ -1,0 +1,61 @@
+{% set name = "lightning-app" %}
+{% set version = "1.8.6" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  git_url: https://github.com/Lightning-AI/lightning
+  git_rev: {{ version }}
+
+build:
+  number: 1
+  noarch: python
+  string: pyh{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
+  script: export PACKAGE_NAME=app; {{ PYTHON }} -m pip install . --no-deps --ignore-installed . -vv
+
+requirements:
+  build:
+    - git-lfs
+  host:
+    - pip {{ pip }}
+    - python 
+  run:
+    - lightning-utilities
+    - lightning-cloud
+    - pytorch-base {{ pytorch }}
+    - packaging
+    - requests {{ requests }}
+    - fastapi
+    - websockets
+    - deepdiff >=5.7.0, <=5.8.1
+    - click {{ click }}
+    - uvicorn
+    - fsspec
+    - beautifulsoup4
+    - croniter
+    - starsessions >=1.2.1, <2.0
+    - s3fs >=2022.5.0, <2022.8.3
+    - arrow >=1.2.0, <1.2.4
+    - traitlets >=5.3.0, <=5.4.0
+    - psutil {{ psutil }}
+    - inquirer >=2.10.0
+   
+test:
+  imports:
+    - lightning_app 
+#  commands:
+#    - pip check
+
+about:
+  home: https://github.com/Lightning-AI/lightning
+  summary: Use Lightning Apps to build everything from production-ready, multi-cloud ML systems to simple research demos.
+  description: Use Lightning Apps to build everything from production-ready, multi-cloud ML systems to simple research demos.
+  license: Apache-2.0
+  license_family: Apache
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - open-ce/open-ce-dev-team
