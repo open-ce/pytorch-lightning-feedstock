@@ -1,5 +1,5 @@
 {% set name = "pytorch-lightning" %}
-{% set version = "1.8.6" %}
+{% set version = "2.0.0" %}
 
 package:
   name: {{ name|lower }}
@@ -34,7 +34,7 @@ requirements:
     - tqdm  {{ tqdm }}
     - fsspec {{ fsspec }}
     - torchmetrics {{ torchmetrics }}
-    - pyDeprecate 0.3.2
+#    - pyDeprecate 0.3.2
     - lightning-utilities
 
 test:

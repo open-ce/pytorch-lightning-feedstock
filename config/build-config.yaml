@@ -16,3 +16,6 @@ recipes:
 
   - name : lightning-app
     path : lightning-app
+
+  - name : lightning-fabric
+    path : lightning-fabric
