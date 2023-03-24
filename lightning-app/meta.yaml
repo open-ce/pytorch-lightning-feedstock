@@ -33,6 +33,7 @@ requirements:
     - click {{ click }}
     - uvicorn
     - fsspec
+    - dateutils
     - beautifulsoup4
     - croniter
     - starsessions >=1.2.1, <2.0
