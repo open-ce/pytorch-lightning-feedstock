@@ -1,4 +1,4 @@
-{% set name = "lightning-app" %}
+{% set name = "lightning-fabric" %}
 {% set version = "2.0.0" %}
 
 package:
@@ -13,7 +13,7 @@ build:
   number: 1
   noarch: python
   string: pyh{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
-  script: export PACKAGE_NAME=app; {{ PYTHON }} -m pip install . --no-deps --ignore-installed . -vv
+  script: export PACKAGE_NAME=fabric; {{ PYTHON }} -m pip install . --no-deps --ignore-installed . -vv
 
 requirements:
   build:
@@ -23,29 +23,15 @@ requirements:
     - python 
   run:
     - lightning-utilities
-    - lightning-cloud
     - pytorch-base {{ pytorch }}
     - packaging
-    - requests {{ requests }}
-    - fastapi
-    - websockets
-    - deepdiff >=5.7.0, <6.2.4
-    - click {{ click }}
-    - uvicorn
     - fsspec
-    - dateutils
-    - beautifulsoup4
-    - croniter
-    - starsessions >=1.2.1, <2.0
-    - s3fs >=2022.5.0, <2022.11.1
-    - arrow >=1.2.0, <1.2.4
-    - traitlets >=5.3.0, <5.9.0
-    - psutil {{ psutil }}
-    - inquirer >=2.10.0, <=3.1.2
-   
+    - numpy {{ numpy }}
+    - typing_extensions {{ typing_extensions }}
+     
 test:
   imports:
-    - lightning_app 
+    - lightning_fabric 
 #  commands:
 #    - pip check
 

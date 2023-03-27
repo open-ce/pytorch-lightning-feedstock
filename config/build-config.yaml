@@ -2,9 +2,6 @@ recipes:
   - name : torchmetrics
     path : metrics
 
-  - name : pydeprecate
-    path : pydeprecate
-
   - name : pytorch-lightning
     path : lightning
 
@@ -16,3 +13,6 @@ recipes:
 
   - name : lightning-app
     path : lightning-app
+
+  - name : lightning-fabric
+    path : lightning-fabric
