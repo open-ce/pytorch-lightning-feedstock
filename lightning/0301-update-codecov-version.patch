@@ -1,0 +1,34 @@
+From a72e80cd4c8324d99a0172dbf28f4080c2e26d2c Mon Sep 17 00:00:00 2001
+From: Deepali Chourasia <deepch23@in.ibm.com>
+Date: Tue, 18 Apr 2023 09:59:48 +0000
+Subject: [PATCH] update codecov version
+
+---
+ requirements/pytorch/test.txt | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/requirements/pytorch/test.txt b/requirements/pytorch/test.txt
+index a6e540db4..9907809d4 100644
+--- a/requirements/pytorch/test.txt
++++ b/requirements/pytorch/test.txt
+@@ -1,5 +1,5 @@
+ coverage==6.5.0
+-codecov==2.1.12
++codecov==2.1.13
+ pytest==7.2.0
+ pytest-cov==4.0.0
+ pytest-forked==1.4.0
+@@ -8,8 +8,8 @@ pytest-rerunfailures==10.3
+ # needed in tests
+ cloudpickle>=1.3, <2.3.0
+ scikit-learn>0.22.1, <1.2.1
+-onnx<1.14.0
+-onnxruntime<1.14.0
++#onnx<1.14.0
++#onnxruntime<1.14.0
+ psutil<5.9.5 # for `DeviceStatsMonitor`
+ pandas>1.0, <1.5.4  # needed in benchmarks
+ fastapi<0.87.0  # for `ServableModuleValidator`
+-- 
+2.34.1
+
