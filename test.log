@@ -1,0 +1,9 @@
+[OPEN-CE-INFO]Running: Create conda environment opence-conda-env-20230420083157
+[OPEN-CE-INFO]Running: Setup PyTorch-Lightning Tests
+[OPEN-CE-INFO]Running: Run PyTorch-Lightning tests
+[OPEN-CE-INFO]Running: Clean tests
+[OPEN-CE-INFO]Running: Setup torchmetrics Tests
+[OPEN-CE-INFO]Running: Run torchmetrics tests
+[OPEN-CE-INFO]Running: Clean tests
+[OPEN-CE-INFO]Running: Remove conda environment opence-conda-env-20230420083157
+[OPEN-CE-INFO]All tests passed!

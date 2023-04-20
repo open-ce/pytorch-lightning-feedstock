@@ -9,7 +9,7 @@ tests:
         cd pytorch-lightning
         git checkout ${PL_COMMIT}
         git apply ${FEEDSTOCK_DIR}/lightning/0301-update-codecov-version.patch
-        conda install -y scikit-learn regex typed-ast pandas=1.4 scikit-image coverage cryptography psutil
+        conda install -y scikit-learn=1.1.* regex typed-ast pandas=1.4 scikit-image coverage cryptography psutil
         pip install -r requirements/pytorch/test.txt
         pip install sklearn omegaconf rich jsonargparse docstring-parser
         pip install -U 'jsonargparse[signatures]'
@@ -45,7 +45,7 @@ tests:
         then
             ARCH="64"
         fi
-        conda install -y regex typed-ast scikit-image nltk gcc_linux-${ARCH} coverage cryptography pandas scipy unzip
+        conda install -y scikit-learn=1.1.* regex typed-ast scikit-image nltk gcc_linux-${ARCH} coverage cryptography pandas scipy unzip
         pip install -r requirements/test.txt
         pip install torch-fidelity pycocotools
         cd tests
