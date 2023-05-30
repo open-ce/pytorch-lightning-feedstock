@@ -10,7 +10,7 @@ source:
   git_rev: {{ version }}
 
 build:
-  number: 1
+  number: 2
   noarch: python
   string: pyh{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
   script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed . -vv
@@ -21,6 +21,7 @@ requirements:
   host:
     - pip {{ pip }}
     - python 
+    - setuptools {{ setuptools }}
   run:
     - future {{ future }} 
     - packaging
