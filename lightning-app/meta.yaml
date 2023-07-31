@@ -1,5 +1,5 @@
 {% set name = "lightning-app" %}
-{% set version = "2.0.1" %}
+{% set version = "2.0.6" %}
 
 package:
   name: {{ name|lower }}
@@ -36,6 +36,7 @@ requirements:
     - dateutils
     - beautifulsoup4
     - croniter
+    - backoff
     - starsessions >=1.2.1, <2.0
     - s3fs >=2022.5.0, <2022.11.1
     - arrow >=1.2.0, <1.2.4
