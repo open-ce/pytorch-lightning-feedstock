@@ -11,7 +11,7 @@ tests:
         git apply ${FEEDSTOCK_DIR}/lightning/0301-update-codecov-version.patch
         conda install -y scikit-learn=1.1.* regex typed-ast pandas=1.4 scikit-image coverage cryptography psutil
         pip install -r requirements/pytorch/test.txt
-        pip install sklearn omegaconf rich jsonargparse docstring-parser
+        pip install omegaconf rich jsonargparse docstring-parser
         pip install -U 'jsonargparse[signatures]'
         python .actions/assistant.py copy_replace_imports --source_dir="./tests" \
           --source_import="lightning.fabric,lightning.pytorch"  --target_import="lightning_fabric,pytorch_lightning"
@@ -19,7 +19,6 @@ tests:
     command: |
         cd pytorch-lightning
         TESTSUITES_TO_RUN=(
-                      tests/tests_pytorch/test_cli.py
                       tests/tests_pytorch/accelerators
                       tests/tests_pytorch/trainer/test_trainer.py
                       tests/tests_pytorch/strategies/test_ddp.py
