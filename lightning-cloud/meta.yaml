@@ -1,5 +1,5 @@
 {% set name = "lightning-cloud" %}
-{% set version = "0.5.37" %}
+{% set version = "0.5.57" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/lightning_cloud-{{ version }}.tar.gz
-  sha256: 1e0d577e1696e3aef974c589c4bd1ed22c70a332750863a393ec3949166137e0
+  sha256: 1d30427a2935a367e0bd19873decb564425f1b648901abab2da9318a8b88c80b
 
 build:
   number: 1
@@ -30,6 +30,7 @@ requirements:
     - uvicorn
     - python-multipart
     - websocket-client
+    - boto3
 
 test:
   imports:
