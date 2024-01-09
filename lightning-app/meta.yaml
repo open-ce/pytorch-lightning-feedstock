@@ -38,7 +38,7 @@ requirements:
     - croniter
     - backoff
     - starsessions >=1.2.1, <2.0
-    - s3fs >=2022.5.0, <2022.11.1
+    - s3fs >=2022.5.0, <2023.6.1
     - arrow >=1.2.0, <1.2.4
     - traitlets >=5.3.0, <5.9.0
     - psutil {{ psutil }}
