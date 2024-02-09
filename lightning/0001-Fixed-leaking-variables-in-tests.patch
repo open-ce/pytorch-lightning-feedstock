@@ -1,0 +1,25 @@
+From 858b44ca3fd37ffccc4dc93e5738bc34335f2ef4 Mon Sep 17 00:00:00 2001
+From: Aman-Surkar <aman_surkar@persistent.com>
+Date: Fri, 9 Feb 2024 12:06:50 +0000
+Subject: [PATCH] Fixed leaking variables in tests
+
+---
+ tests/tests_pytorch/conftest.py | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/tests/tests_pytorch/conftest.py b/tests/tests_pytorch/conftest.py
+index e14432089..537e415b0 100644
+--- a/tests/tests_pytorch/conftest.py
++++ b/tests/tests_pytorch/conftest.py
+@@ -82,6 +82,8 @@ def restore_env_variables():
+         "TF_CPP_MIN_LOG_LEVEL",
+         "TF_GRPC_DEFAULT_OPTIONS",
+         "XLA_FLAGS",
++        "TF2_BEHAVIOR",
++        "TPU_ML_PLATFORM",
+     }
+     leaked_vars.difference_update(allowlist)
+     assert not leaked_vars, f"test is leaking environment variable(s): {set(leaked_vars)}"
+-- 
+2.40.1
+
