@@ -9,6 +9,7 @@ tests:
         cd pytorch-lightning
         git checkout ${PL_COMMIT}
         git apply ${FEEDSTOCK_DIR}/lightning/0301-update-codecov-version.patch
+        git apply ${FEEDSTOCK_DIR}/lightning/0001-Fixed-leaking-variables-in-tests.patch
         conda install -y scikit-learn=1.1.* regex typed-ast pandas=1.4 scikit-image coverage cryptography psutil
         pip install -r requirements/pytorch/test.txt
         pip install omegaconf rich jsonargparse docstring-parser
