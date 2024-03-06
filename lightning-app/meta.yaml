@@ -10,7 +10,7 @@ source:
   git_rev: {{ version }}
 
 build:
-  number: 2
+  number: 3
   noarch: python
   string: pyh{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
   script: export PACKAGE_NAME=app; {{ PYTHON }} -m pip install . --no-deps --ignore-installed . -vv
@@ -38,7 +38,8 @@ requirements:
     - croniter
     - backoff
     - starsessions >=1.2.1, <2.0
-    - s3fs >=2022.5.0, <=2023.10.0
+    # disable s3fs for PPC because v2023.10.0 is not available on PPC
+    #- s3fs >=2022.5.0, <=2023.10.0    #[x86_64]
     - arrow >=1.2.0, <1.2.4
     - traitlets >=5.3.0, <5.9.0
     - psutil {{ psutil }}
