@@ -1,0 +1,25 @@
+From 50d6748d7dadf33c935699876786c535c3b8165d Mon Sep 17 00:00:00 2001
+From: Deepali Chourasia <deepch23@in.ibm.com>
+Date: Tue, 2 Apr 2024 09:07:11 +0000
+Subject: [PATCH] update requirements
+
+---
+ requirements/pytorch/test.txt | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/requirements/pytorch/test.txt b/requirements/pytorch/test.txt
+index 94a06630d..3ba37bb18 100644
+--- a/requirements/pytorch/test.txt
++++ b/requirements/pytorch/test.txt
+@@ -8,8 +8,6 @@ pytest-random-order ==1.1.0
+ # needed in tests
+ cloudpickle >=1.3, <2.3.0
+ scikit-learn >0.22.1, <1.4.0
+-onnx >=0.14.0, <1.15.0
+-onnxruntime >=0.15.0, <1.17.0
+ psutil <5.9.6 # for `DeviceStatsMonitor`
+ pandas >1.0, <2.2.0  # needed in benchmarks
+ fastapi  # for `ServableModuleValidator`  # not setting version as re-defined in App
+-- 
+2.40.1
+

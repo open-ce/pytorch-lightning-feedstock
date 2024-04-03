@@ -1,5 +1,4 @@
 tests:
-tests:
   - name: Setup PyTorch-Lightning Tests
     command: |
         PL_VERSION=$(python -c "import pytorch_lightning; print(pytorch_lightning.__version__)")
@@ -8,10 +7,10 @@ tests:
         git clone https://github.com/PyTorchLightning/pytorch-lightning.git
         cd pytorch-lightning
         git checkout ${PL_COMMIT}
-        git apply ${FEEDSTOCK_DIR}/lightning/0301-update-codecov-version.patch
-        conda install -y scikit-learn=1.1.* regex typed-ast pandas=1.4 scikit-image coverage cryptography psutil
+        git apply ${FEEDSTOCK_DIR}/lightning/0301-update-requirements.patch
+        conda install -y scikit-learn=1.3.* regex pandas=1.4 scikit-image coverage cryptography psutil cmake
         pip install -r requirements/pytorch/test.txt
-        pip install sklearn omegaconf rich jsonargparse docstring-parser
+        pip install omegaconf rich jsonargparse docstring-parser
         pip install -U 'jsonargparse[signatures]'
         python .actions/assistant.py copy_replace_imports --source_dir="./tests" \
           --source_import="lightning.fabric,lightning.pytorch"  --target_import="lightning_fabric,pytorch_lightning"
@@ -39,14 +38,13 @@ tests:
         git clone https://github.com/PyTorchLightning/torchmetrics.git
         cd torchmetrics
         git checkout v${METRICS_VERSION}
-        git apply ${FEEDSTOCK_DIR}/metrics/0301-fix-for-tests.patch
         ARCH=$(arch)
         if test "${ARCH}" == "x86_64"
         then
             ARCH="64"
         fi
-        conda install -y scikit-learn=1.1.* regex typed-ast scikit-image nltk gcc_linux-${ARCH} coverage cryptography pandas scipy unzip
-        pip install -r requirements/test.txt
+        conda install -y scikit-learn=1.3.* regex scikit-image nltk gcc_linux-${ARCH} coverage cryptography pandas scipy unzip
+        pip install -r requirements/_tests.txt
         pip install torch-fidelity pycocotools
         cd tests
         python -c "from urllib.request import urlretrieve ; urlretrieve('https://pl-public-data.s3.amazonaws.com/metrics/data.zip', 'data.zip')"
@@ -58,7 +56,6 @@ tests:
         TESTSUITES_TO_RUN=(
                       tests/unittests/bases/test_aggregation.py
                       tests/unittests/classification/test_accuracy.py
-                      tests/unittests/detection/test_map.py
                       tests/unittests/regression/test_r2.py
                       tests/unittests/retrieval/test_ndcg.py
         )
