@@ -8,7 +8,7 @@ tests:
         cd pytorch-lightning
         git checkout ${PL_COMMIT}
         git apply ${FEEDSTOCK_DIR}/lightning/0301-update-requirements.patch
-        conda install -y scikit-learn=1.3.* regex pandas=1.4 scikit-image coverage cryptography psutil cmake
+        conda install -y scikit-learn=1.3.* regex pandas scikit-image coverage cryptography psutil cmake
         pip install -r requirements/pytorch/test.txt
         pip install omegaconf rich jsonargparse docstring-parser
         pip install -U 'jsonargparse[signatures]'
@@ -45,7 +45,6 @@ tests:
         fi
         conda install -y scikit-learn=1.3.* regex scikit-image nltk gcc_linux-${ARCH} coverage cryptography pandas scipy unzip
         pip install -r requirements/_tests.txt
-        pip install torch-fidelity pycocotools
         cd tests
         python -c "from urllib.request import urlretrieve ; urlretrieve('https://pl-public-data.s3.amazonaws.com/metrics/data.zip', 'data.zip')"
         unzip -o data.zip
