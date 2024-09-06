@@ -10,7 +10,7 @@ source:
   git_rev: {{ version }}
 
 build:
-  number: 3
+  number: 4
   noarch: python
   string: pyh{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
   script: export PACKAGE_NAME=app; {{ PYTHON }} -m pip install . --no-deps --ignore-installed . -vv
@@ -44,6 +44,7 @@ requirements:
     - traitlets >=5.3.0, <5.9.0
     - psutil {{ psutil }}
     - inquirer >=2.10.0, <=3.1.2
+    - typing-extensions {{ typing_extensions }}
    
 test:
   imports:
