@@ -26,6 +26,8 @@ requirements:
     - typing_extensions {{ typing_extensions }}
 
 test:
+  requires:
+    - setuptools {{setuptools}}
   imports:
     - lightning_utilities
   commands:
