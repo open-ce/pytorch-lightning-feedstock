@@ -45,6 +45,9 @@ requirements:
     - typing-extensions {{ typing_extensions }}
    
 test:
+  requires:
+    - setuptools {{setuptools}}
+    - pydantic {{ pydantic }}
   imports:
     - lightning_app 
 #  commands:

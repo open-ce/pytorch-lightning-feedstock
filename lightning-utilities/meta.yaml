@@ -28,6 +28,7 @@ requirements:
 test:
   requires:
     - setuptools {{ setuptools }}
+    - python {{ python }}
   imports:
     - lightning_utilities
   commands:
