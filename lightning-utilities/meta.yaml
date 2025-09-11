@@ -10,7 +10,7 @@ source:
   sha256: 9e31617eccbbadc6b737a2432fd7076ff8e24957f9c63aeba2530b189e19319c
 
 build:
-  number: 2
+  number: 3
   noarch: python
   string: pyh{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
   script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed . -vv
