@@ -20,7 +20,7 @@ requirements:
     - python
   run:
     - packaging
-    - setuptools {{ setuptools }}
+    - setuptools
     - python 
     - pytorch-base {{ pytorch }}
     - tqdm {{ tqdm }}
