@@ -13,7 +13,7 @@ build:
   number: 3
   noarch: python
   string: pyh{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
-  script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed . -vv
+  script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   host:
@@ -23,10 +23,13 @@ requirements:
     - python
     - fire
     - packaging
+    - typing_extensions >=4.0,<5
+    - setuptools >=78.1.1
 
 test:
   requires:
-    - setuptools
+    - typing_extensions >=4.0,<5
+    - setuptools >=78.1.1
   imports:
     - lightning_utilities
   commands:

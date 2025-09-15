@@ -1,12 +1,12 @@
 recipes:
+  - name : lightning-utilities
+    path : lightning-utilities
+
   - name : torchmetrics
     path : metrics
 
   - name : pytorch-lightning
     path : lightning
-
-  - name : lightning-utilities
-    path : lightning-utilities
 
   - name : lightning-cloud
     path : lightning-cloud
