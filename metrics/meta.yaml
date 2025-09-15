@@ -20,11 +20,11 @@ requirements:
     - python
   run:
     - packaging
-    - setuptools
+    - setuptools >=78.1.1
     - python 
     - pytorch-base {{ pytorch }}
     - tqdm {{ tqdm }}
-    - lightning-utilities 
+    - lightning-utilities =0.10.0
 
 test:
   imports:
