@@ -20,7 +20,8 @@ requirements:
     - python
   run:
     - packaging
-    - setuptools >=78.1.1
+    - setuptools >=78.1.1    #[x86_64]
+    - setuptools             #[not x86_64]
     - python 
     - pytorch-base {{ pytorch }}
     - tqdm {{ tqdm }}
