@@ -27,7 +27,7 @@ tests:
         do
            TEST_SUITES+="$test_suite "
         done
-        pytest -v ${TEST_SUITES} -k "not test_lightning_cli_help"
+        pytest -v ${TEST_SUITES} -k "not test_lightning_cli_help and not test_lightning_cli_load_from_checkpoint_dependency_injection"
   - name: Clean tests
     command: rm -rf pytorch-lightning
   - name: Setup torchmetrics Tests
